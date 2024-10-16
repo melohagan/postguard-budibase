@@ -1,6 +1,6 @@
 {
-  "name": "postguard",
-  "version": "0.2.0",
+  "name": "postguard-budibase",
+  "version": "0.0.1",
   "description": "Validate Postgres SQL queries in source code against your schema at build time.",
   "bin": "dist/cli.js",
   "scripts": {
