@@ -36,7 +36,7 @@ export function loadSourceFile(filePath: string): SourceFile {
 }
 
 export function parseSourceFile(sourceFile: SourceFile) {
-  const queries: QueryInvocation[] = []
+  const queries: string[] = []
   const tableSchemas: TableSchema[] = []
 
   const ast = parse(sourceFile.fileContent, {
@@ -63,7 +63,7 @@ export function parseSourceFile(sourceFile: SourceFile) {
       if (!importSpecifier) return
 
       const query = parseQuery(path.get("quasi"), sourceFile)
-      queries.push(createQueryInvocation(query, path, sourceFile))
+      queries.push(query)
     }
   })
 

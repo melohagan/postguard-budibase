@@ -76,7 +76,7 @@ function createExpressionPlaceholder(expression: NodePath<types.Expression>, par
   }
 }
 
-export function parseQuery(path: NodePath<types.TemplateLiteral>, sourceFile: SourceFile): Query {
+export function parseQuery(path: NodePath<types.TemplateLiteral>, sourceFile: SourceFile): string {
   const expressions = path.get("expressions")
   const textPartials = path.get("quasis").map(quasi => quasi.node)
 
@@ -129,5 +129,5 @@ export function parseQuery(path: NodePath<types.TemplateLiteral>, sourceFile: So
     }
   }
 
-  return parsePostgresQuery(templatedQueryString, sourceFile, sourceMap, expressionSpreadTypes)
+  return templatedQueryString
 }
