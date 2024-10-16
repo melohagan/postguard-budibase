@@ -41,26 +41,6 @@ export function parseSourceFile(sourceFile: SourceFile) {
 
   debugFile(`Parsed file ${sourceFile.filePath}:`)
 
-  for (const invocation of queries) {
-    const query = invocation.query
-    debugQueries(
-      `  Query: ${query.query.trim()}\n` +
-        `    Result columns: ${formatColumnRefs(query.returnedColumns)}\n` +
-        `    Referenced columns: ${formatColumnRefs(query.referencedColumns)}`
-    )
-
-    for (const subquery of getAllSubqueries(query)) {
-      const returningStatus = subquery.returnsIntoParentQuery ? " (into parent query)" : ""
-      debugSubqueries(
-        `    Subquery type: ${subquery.path.type}\n` +
-          `      Result columns: ${formatColumnRefs(
-            subquery.returnedColumns
-          )}${returningStatus}\n` +
-          `      Referenced columns: ${formatColumnRefs(subquery.referencedColumns)}`
-      )
-    }
-  }
-
   for (const table of tableSchemas) {
     debugTables(`  Table: ${table.tableName}`)
     for (const columnName of table.columnNames) {
